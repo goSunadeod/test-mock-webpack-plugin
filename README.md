@@ -1,4 +1,4 @@
-# TEST-Mock-Webpack-Plugin
+# Test-Mock-Webpack-Plugin
 
 这个插件提供了一个简单的方式，只需要一点配置，你就可以在基于`webpack`和`webpack-dev-server`的项目中轻松的mock数据。
 
