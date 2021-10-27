@@ -11,7 +11,7 @@
 在webpack的配置文件中，加入插件:
 
 ```js
-const TestMockMockPlugin = require('test-mock-webpack-plugin')
+const TestMockMockPlugin = require('./lib/index.js')
 const path = require('path')
 
 module.exports = {
@@ -26,58 +26,7 @@ module.exports = {
   ]
 }
 ```
-
-### Mock 文件
-
-目录结构:
-
-```
-- src
-  - app.js
-- mock
-  - user
-    - profile.json
-    - orders.js
-  - menu.js
-```
-
-这里的目录路径就是请求的路径，比如，如果你使用了`axios`，那么`axios.get('/user/profile')`将会请求`mock/user/profile.json`文件。
-下面提供几种mock文件的例子：
-
-- /mock/user/orders.js
-
-这个js文件导出一个函数，这个函数接收两个参数: `request` 和 `response`，这两个对象来自于`webpack-dev-server`中，即是`express`中的请求和响应对象。你可以根据请求参数的不同来返回不同的结果。
-
-```js
-module.exports = (request, response) => {
-  // handle request ...
-  // modify response ...
-  return {
-    data: []
-  }
-}
-```
-
-- /mock/user/profile.json
-
-```json
-{
-  "name": "John Doe"
-}
-
-```
-
-- /mock/menu.js
-```js
-module.exports = {
-  items: [],
-  from: 'xx'
-}
-
-```
-
-其他文件都会按原样返回。
-
+具体参考`examples`里的案例
 
 ### 配置
 
@@ -87,7 +36,6 @@ module.exports = {
 
   mock文件夹的路径，**必须是一个绝对路径**
 
-
 - **lazy**
 
   `Boolean`
@@ -96,7 +44,6 @@ module.exports = {
   
   如果设置成false的话，项目会在启动的时候就加载好所有的mock文件放入缓存中，所以项目启动时间会有所增加，但是请求的响应速度会加快。
   
-
 - **autoRefresh**
 
   `Boolean`
